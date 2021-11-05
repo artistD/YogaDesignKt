@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bnv_selector.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_member_join.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/exo_player_control_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chatting.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_vedio.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recycler_vedio.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.1" />
       </map>
     </option>

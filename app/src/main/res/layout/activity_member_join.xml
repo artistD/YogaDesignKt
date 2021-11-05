@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MemberJoinActivity"
+    android:background="#FF222222">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="#FFFFFFFF"
+            android:textSize="32sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:textSize="20sp"
+                android:textColor="#FFFFFFFF"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <EditText
+                    android:id="@+id/et_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="#FFFFFFFF"
+                    android:layout_weight="1"
+                    android:inputType="text"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="중복체크"
+                    android:layout_marginLeft="16dp"
+                    android:onClick="clickIdChecked"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_id_checked_false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* 중복된 아이디가 있습니다."
+                android:textColor="#FFFF7777"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_id_checked_true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* 사용가능한 아이디입니다."
+                android:textColor="#FF5555FF"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="20sp"
+                android:textColor="#FFFFFFFF"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#FFFFFFFF"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:inputType="textPassword"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password Check"
+                android:textSize="20sp"
+                android:textColor="#FFFFFFFF"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="20dp"/>
+
+
+            <EditText
+                android:id="@+id/et_password_check"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#FFFFFFFF"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:text="회원가입 완료"
+                android:textSize="20sp"
+                android:onClick="clickMemberJoin"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

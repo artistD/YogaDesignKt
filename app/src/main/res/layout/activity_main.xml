@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FF222222">
 
     <FrameLayout
         android:id="@+id/container"
@@ -13,12 +14,22 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FF5757FF"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/menu_bnv"/>
+        android:layout_height="80dp"
+        android:background="#FF222222"
+        app:menu="@menu/menu_bnv"
+        app:itemTextColor="@color/bnv_pressed"
+        app:itemIconTint="@color/bnv_pressed"
+        app:itemIconSize="24dp"
+        app:labelVisibilityMode="labeled"/>
 
 
 
