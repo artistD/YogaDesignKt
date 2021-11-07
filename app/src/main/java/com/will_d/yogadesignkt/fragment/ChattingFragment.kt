@@ -16,6 +16,7 @@ import com.will_d.yogadesignkt.Global
 import com.will_d.yogadesignkt.adapter.ChattingAdapter
 import com.will_d.yogadesignkt.R
 import com.will_d.yogadesignkt.item.MessageItem
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -57,8 +58,10 @@ public class ChattingFragment : Fragment() {
                 val message : String = etMsg.text.toString()
                 val profileUrl = Global.profileUrl
 
-                val calendar = Calendar.getInstance()
-                val time = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
+//                val calendar = Calendar.getInstance()
+//                val time = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
+                val sdf = SimpleDateFormat("HH:mm")
+                val time = sdf.format(Date())
 
                 val item = MessageItem(id, profileUrl, nickname, message, time)
                 chatRef.push().setValue(item)
@@ -68,15 +71,17 @@ public class ChattingFragment : Fragment() {
                 val imm : InputMethodManager = (context?.getSystemService(Context.INPUT_METHOD_SERVICE)) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken,0)
 
-
             }
 
         })
 
 
+        firebaseLoad()
+
+
     }
 
-    val firebaseChat : () -> Unit = {
+    val firebaseLoad : () -> Unit = {
         firebaseDatabase = FirebaseDatabase.getInstance()
         chatRef = firebaseDatabase.getReference("chat")
 
