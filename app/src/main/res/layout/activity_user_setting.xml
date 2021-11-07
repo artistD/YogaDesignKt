@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UserSettingActivity"
+    android:background="#FF222222">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true">
+
+
+        <RelativeLayout
+            android:id="@+id/civ_con"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ"
+                android:layout_width="144dp"
+                android:layout_height="144dp"
+                android:src="@drawable/img_1"
+                android:onClick="clickUpdateImg"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_photo"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="4dp"/>
+
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#FFFFFFFF"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:inputType="text"
+            android:layout_below="@id/civ_con"
+            android:layout_marginTop="32dp"
+            android:hint="nickname"
+            android:paddingLeft="8dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:padding="16dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFFFF"
+        android:onClick="clickCancel"/>
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="시작하기"
+       android:padding="16dp"
+       android:textSize="20sp"
+       android:textColor="#FFFFFFFF"
+       android:layout_alignParentRight="true"
+       android:onClick="clickStart"/>
+
+
+
+
+
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package com.will_d.yogadesignkt
 
 import android.util.Log
+import com.will_d.yogadesignkt.adapter.VideoAdapter
+import com.will_d.yogadesignkt.item.VideoItem
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -34,7 +36,7 @@ public class RetrofitHellper {
 
         //:옆에쓰는 것은 자료형에대해서 쓰는것이고, 그 뒤에 쓰는것은 파라미터를 쓰는것이다
         val getVideoData : (ArrayList<VideoItem>, VideoAdapter)->Unit = {
-                videoItems:ArrayList<VideoItem>, adapter:VideoAdapter
+                videoItems:ArrayList<VideoItem>, adapter: VideoAdapter
             ->
             val retrofit: Retrofit = RetrofitHellper.getRetrofritScalars()
             val retrofitService : RetrofitService = retrofit.create(RetrofitService::class.java)

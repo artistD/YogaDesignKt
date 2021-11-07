@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="#FF222222">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nick name"
+        android:layout_toLeftOf="@id/civ"
+        android:layout_marginRight="16dp"
+        android:textColor="#FFFFFFFF"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_con"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_alignRight="@id/tv_name"
+        app:cardCornerRadius="4dp">
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello Android"
+            android:textColor="@color/white"
+            android:maxWidth="250dp"
+            android:background="#FF5252FF"
+            android:padding="12dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13:43"
+        android:textColor="#FFFFFFFF"
+        android:layout_marginRight="8dp"
+        android:layout_alignBottom="@id/cd_con"
+        android:layout_toLeftOf="@id/cd_con"
+        android:textSize="12dp"/>
+
+
+
+</RelativeLayout>

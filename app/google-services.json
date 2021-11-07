@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "191975840940",
+    "project_id": "yogadesignkt-1247e",
+    "storage_bucket": "yogadesignkt-1247e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191975840940:android:dc6c3a495b525ff980d309",
+        "android_client_info": {
+          "package_name": "com.will_d.yogadesignkt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191975840940-nt7hg186u9mao3jq55tn753penghpe2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY46gkpkry-0QUkTpnrxpqzuTuLLfECFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191975840940-nt7hg186u9mao3jq55tn753penghpe2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,25 +1,16 @@
-package com.will_d.yogadesignkt
+package com.will_d.yogadesignkt.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerFragment
-import com.google.gson.JsonObject
-import org.json.JSONArray
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import com.will_d.yogadesignkt.R
+import com.will_d.yogadesignkt.RetrofitHellper
+import com.will_d.yogadesignkt.adapter.VideoAdapter
+import com.will_d.yogadesignkt.item.VideoItem
 
 public class VedioFragment : Fragment() {
 
@@ -55,7 +46,7 @@ public class VedioFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 //        youtubePlay()
-          RetrofitHellper.getVideoData(videoItems, adapter)
+        RetrofitHellper.getVideoData(videoItems, adapter)
     }
 
     //todo : 교수님께 질문 : 화면, 기능, 데이터를 나눈다는것이 도대체 무엇일까??? 나는 일단 레트로핏에 관련된 부분들을 레트로핏 헬퍼에 몰아넣기로 했다 근데

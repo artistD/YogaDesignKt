@@ -1,9 +1,7 @@
-package com.will_d.yogadesignkt
+package com.will_d.yogadesignkt.adapter
 
 import android.content.Context
-import android.media.browse.MediaBrowser
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -12,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
+import com.will_d.yogadesignkt.R
+import com.will_d.yogadesignkt.item.VideoItem
 
 class VideoAdapter(val context:Context, val videoItems : ArrayList<VideoItem>) : Adapter<VideoAdapter.VH>() {
 

@@ -1,16 +1,20 @@
-package com.will_d.yogadesignkt
+package com.will_d.yogadesignkt.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.will_d.yogadesignkt.R
+import com.will_d.yogadesignkt.RetrofitHellper
+import com.will_d.yogadesignkt.RetrofitService
 import okhttp3.MultipartBody
 import org.json.JSONArray
 import org.json.JSONObject
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +37,25 @@ class MemberJoinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_join)
+
         memberCheckedLoadDB()
+
+        etId.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                tvIdCheckedTrue.visibility = View.GONE
+                tvIdCheckedFalse.visibility = View.GONE
+                isIdChecked = false
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
     }
 
     fun clickMemberJoin(view: View) {
@@ -47,6 +69,16 @@ class MemberJoinActivity : AppCompatActivity() {
 
     fun clickIdChecked(view: View) {
         //여기서도 DB작업이 필요해야
+        //todo : 여기 질문을 해야함 스레드 커서가 멈추는데 왜멈추는 지를 모르겠음
+        if (idItems.size == 0){
+            tvIdCheckedTrue.visibility = View.GONE
+            tvIdCheckedFalse.visibility = View.GONE
+
+            tvIdCheckedTrue.visibility = View.VISIBLE
+            isIdChecked = true
+            return
+        }
+
         for (i in 0 until idItems.size){
             if (etId.text.toString().equals(idItems.get(i))){
                 tvIdCheckedTrue.visibility = View.GONE
@@ -68,7 +100,7 @@ class MemberJoinActivity : AppCompatActivity() {
 
     val memberCheckedLoadDB : ()->Unit ={
         val retrofit : Retrofit = RetrofitHellper.getRetrofritScalars()
-        val retrofitService:RetrofitService = retrofit.create(RetrofitService::class.java)
+        val retrofitService: RetrofitService = retrofit.create(RetrofitService::class.java)
         val call : Call<String> = retrofitService.memberCheckedLoadDB()
         idItems.clear()
         call.enqueue(object : Callback<String>{
@@ -97,7 +129,7 @@ class MemberJoinActivity : AppCompatActivity() {
             id:String, pw:String
         ->
         val retrofit : Retrofit = RetrofitHellper.getRetrofritScalars()
-        val retrofitService:RetrofitService = retrofit.create(RetrofitService::class.java)
+        val retrofitService: RetrofitService = retrofit.create(RetrofitService::class.java)
 
         val filePart : MultipartBody.Part? = null
         val dataPart = mutableMapOf<String, String>()
@@ -106,10 +138,11 @@ class MemberJoinActivity : AppCompatActivity() {
 //        val datapart2 : Map<String, String> = mutableMapOf<String, String>()
 //        datapart2.put
 
+        dataPart.put("crud", "INSERT")
         dataPart.put("id", id)
         dataPart.put("pw", pw)
 
-        val call : Call<String> = retrofitService.memberDataSendDB("INSERT", dataPart, filePart)
+        val call : Call<String> = retrofitService.memberDataSendDB(dataPart, filePart)
         call.enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.i("memberDataSendDB", response.body() as String)
@@ -124,6 +157,5 @@ class MemberJoinActivity : AppCompatActivity() {
         })
 
     }
-
 
 }

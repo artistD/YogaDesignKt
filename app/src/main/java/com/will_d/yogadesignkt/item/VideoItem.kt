@@ -1,4 +1,4 @@
-package com.will_d.yogadesignkt
+package com.will_d.yogadesignkt.item
 
 class VideoItem(var title:String?, var subtitle:String?, var thumb:String?, var sources:String?, var description : String?) {
 
