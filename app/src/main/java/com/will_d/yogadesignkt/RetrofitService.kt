@@ -26,7 +26,7 @@ public interface RetrofitService {
 
 
     @GET("v1/search/movie.json")
-    fun naverOpenApiMovieLoadData(@Query("query") query :String, @Header("X-Naver-Client-Id") id:String, @Header("X-Naver-Client-Secret") secret : String) : retrofit2.Call<String>
+    fun naverOpenApiMovieLoadData(@Query("query") query :String, @Query("display") display:Int, @Header("X-Naver-Client-Id") id:String, @Header("X-Naver-Client-Secret") secret : String) : retrofit2.Call<String>
 
     @GET("kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
     fun boxOfficeOpenApiLoadData(@Query("key") key :String, @Query("targetDt") targetDt :String) : retrofit2.Call<String>
