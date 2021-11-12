@@ -11,6 +11,8 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -49,6 +51,13 @@ class UserSettingActivity : AppCompatActivity() {
 
     val civ:CircleImageView by lazy { findViewById(R.id.civ) }
     val etNickName : EditText by lazy { findViewById(R.id.et_nickname) }
+
+
+    //blur
+    val pg : ProgressBar by lazy { findViewById(R.id.pg) }
+    val blur: RelativeLayout by lazy { findViewById(R.id.blur) }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_setting)
@@ -127,6 +136,10 @@ class UserSettingActivity : AppCompatActivity() {
     }
 
     val firebaseSaveData:()->Unit = {
+
+        pg.visibility = View.VISIBLE
+        blur.visibility = View.VISIBLE
+
         Global.nickName = etNickName.text.toString()  //***************************************************************
 
         val sdf : SimpleDateFormat = SimpleDateFormat("yyyyMMddhhmmss")
@@ -185,6 +198,10 @@ class UserSettingActivity : AppCompatActivity() {
         val call : Call<String> = retrofitService.memberDataSendDB(dataPart, filePart)
         call.enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
+
+                pg.visibility = View.INVISIBLE
+                blur.visibility = View.INVISIBLE
+
                 Log.i("memberDataSendDB", response.body() as String)
                 val pref:SharedPreferences = getSharedPreferences("Data", MODE_PRIVATE)
                 val editor : SharedPreferences.Editor = pref.edit()

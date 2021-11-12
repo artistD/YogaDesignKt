@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
-    android:orientation="vertical"
     android:background="#FF222222">
 
-    <FrameLayout
-        android:id="@+id/container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:orientation="vertical">
 
-    <View
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF5757FF"/>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnv"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#FF222222"
+            app:menu="@menu/menu_bnv"
+            app:itemTextColor="@color/bnv_pressed"
+            app:itemIconTint="@color/bnv_pressed"
+            app:itemIconSize="24dp"
+            app:labelVisibilityMode="labeled"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/blur"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#FF5757FF"/>
+        android:layout_height="match_parent"
+        android:background="#99333333"
+        android:clickable="true"
+        android:visibility="invisible"/>
+
+    <ProgressBar
+        android:id="@+id/pg"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="#FF5252FF"
+        android:visibility="invisible"/>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#FF222222"
-        app:menu="@menu/menu_bnv"
-        app:itemTextColor="@color/bnv_pressed"
-        app:itemIconTint="@color/bnv_pressed"
-        app:itemIconSize="24dp"
-        app:labelVisibilityMode="labeled"/>
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

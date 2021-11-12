@@ -3,20 +3,26 @@ package com.will_d.yogadesignkt.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.will_d.yogadesignkt.*
 import com.will_d.yogadesignkt.fragment.ChattingFragment
-import com.will_d.yogadesignkt.fragment.HomeFragment
 import com.will_d.yogadesignkt.fragment.MovieFragment
 import com.will_d.yogadesignkt.fragment.VedioFragment
 
 class MainActivity : AppCompatActivity() {
 
-    val fragments: Array<Fragment> = arrayOf<Fragment>(HomeFragment(), MovieFragment(), VedioFragment(), ChattingFragment())
+    val fragments: Array<Fragment> = arrayOf<Fragment>(VedioFragment(), MovieFragment(), ChattingFragment())
     val bnv:BottomNavigationView by lazy { findViewById(R.id.bnv) }
+
+
+    //로딩에 관련된 친구들
+    val pg : ProgressBar by lazy { findViewById(R.id.pg) }
+    val blur : RelativeLayout by lazy { findViewById(R.id.blur) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         tran.hide(fragments[1])
         tran.hide(fragments[2])
-        tran.hide(fragments[3])
 
         tran.add(R.id.container, fragments[0])
         tran.add(R.id.container, fragments[1])
         tran.add(R.id.container, fragments[2])
-        tran.add(R.id.container, fragments[3])
         tran.commit()
 
         val bnv:BottomNavigationView = findViewById(R.id.bnv)
@@ -47,12 +51,11 @@ class MainActivity : AppCompatActivity() {
                 tran.hide(fragments[0])
                 tran.hide(fragments[1])
                 tran.hide(fragments[2])
-                tran.hide(fragments[3])
 
 
                 val h:Int = item.itemId
                 when(h){
-                    R.id.bnv_home ->{
+                    R.id.bnv_videos ->{
                         tran.show(fragments[0])
                     }
 
@@ -60,12 +63,8 @@ class MainActivity : AppCompatActivity() {
                         tran.show(fragments[1])
                     }
 
-                    R.id.bnv_videos ->{
-                        tran.show(fragments[2])
-                    }
-
                     R.id.bnv_chatting ->{
-                        tran.show(fragments[3])
+                        tran.show(fragments[2])
                     }
                 }
                 tran.commit()

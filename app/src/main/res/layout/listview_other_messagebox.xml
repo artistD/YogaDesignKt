@@ -39,7 +39,7 @@
             android:padding="12dp"
             android:textColor="#FFFFFFFF"
             android:maxWidth="250dp"
-            android:background="#FF5252FF"/>
+            android:background="#775252FF"/>
 
     </androidx.cardview.widget.CardView>
 

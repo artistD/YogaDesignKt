@@ -8,13 +8,22 @@
     android:background="#FF222222">
 
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ep_2"
+        android:layout_marginTop="16dp"/>
+
 
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="396dp"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="32dp">
 
         <TextView
             android:id="@+id/tv_login"
@@ -29,36 +38,73 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:layout_below="@id/tv_login"
+            android:layout_marginTop="24dp">
 
-            <EditText
-                android:id="@+id/et_id"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#FFFFFFFF"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:inputType="text"/>
 
-            <EditText
-                android:id="@+id/et_pw"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#FFFFFFFF"
-                android:layout_marginTop="32dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:inputType="textPassword"/>
-
-            <Button
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:text="로그인"
-                android:layout_marginTop="24dp"
-                android:textSize="20sp"
-                android:onClick="clickLogin"/>
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                app:cardCornerRadius="16dp">
+
+                <EditText
+                    android:id="@+id/et_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="#FFFFFFFF"
+                    android:inputType="text"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                app:cardCornerRadius="16dp">
+
+                <EditText
+                    android:id="@+id/et_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="#FFFFFFFF"
+                    android:inputType="textPassword"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="48dp"
+                android:backgroundTint="#FF5252FF"
+                android:onClick="clickLogin">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="로그인"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="#FFFFFFFF"/>
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,24 +113,12 @@
                 android:textSize="20sp"
                 android:textColor="#FFFFFFFF"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:onClick="clickMemberJoinPage"/>
 
         </LinearLayout>
 
     </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/container"
-        android:layout_centerHorizontal="true"
-        android:background="#FFFFFFFF"
-        android:padding="8dp"
-        android:text="Google Login"
-        android:textColor="#FF333333"
-        android:textSize="32sp"
-        android:onClick="clickGoogleLogin"/>
 
 
 </RelativeLayout>

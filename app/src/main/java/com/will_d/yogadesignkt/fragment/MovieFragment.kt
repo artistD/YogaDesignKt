@@ -1,5 +1,6 @@
 package com.will_d.yogadesignkt.fragment
 
+import android.content.Context
 import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.util.Log
@@ -7,9 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.JsonObject
 import com.will_d.yogadesignkt.R
 import com.will_d.yogadesignkt.RetrofitService
+import com.will_d.yogadesignkt.activity.MainActivity
+import com.will_d.yogadesignkt.adapter.MovieAdapter
 import com.will_d.yogadesignkt.item.MovieItem
 import org.json.JSONArray
 import org.json.JSONObject
@@ -23,7 +29,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 public class MovieFragment : Fragment() {
 
     val items : ArrayList<MovieItem> = arrayListOf<MovieItem>()
-    var num =0
+    lateinit var recyclerview :RecyclerView
+    lateinit var adapter : MovieAdapter
+
+    lateinit var mainActivty : MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +46,26 @@ public class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        naverOpenApiMovieLoadData()
+        mainActivty = activity as MainActivity
+
+
+        var imgUrl : String = "https://cdn.pixabay.com/photo/2016/11/22/06/32/girl-1848477_1280.jpg"
+
+//        items.add(MovieItem("1", "dqwqwd", "qwdqw", imgUrl))
+
+        recyclerview = view.findViewById(R.id.recycler_movie)
+        adapter = MovieAdapter(activity as Context, items)
+        val gridLayoutManager : GridLayoutManager = GridLayoutManager(activity, 2)
+        recyclerview.layoutManager = gridLayoutManager
+        recyclerview.adapter = adapter
+
+
         boxOfficeOpenApiLoadData()
 
     }
-    val naverOpenApiMovieLoadData : (String, Map<String, String>)->Unit = {
-            title:String, map:Map<String, String>
+
+    val naverOpenApiMovieLoadData : (String, MovieItem)->Unit = {
+            title:String, movieItem:MovieItem
         ->
 
         val clientId = "4xYhrcGFaH6EpRGIGPJf"
@@ -59,22 +82,17 @@ public class MovieFragment : Fragment() {
 
         call.enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
+                mainActivty.pg.visibility = View.INVISIBLE
+                mainActivty.blur.visibility = View.INVISIBLE
                 Log.i("naver", response.body() as String)
                 val jsonObject : JSONObject = JSONObject(response.body())
                 val a = jsonObject.getJSONArray("items")
 
                     val c = a.getJSONObject(0)
                     val image = c.getString("image")
-                    val subtitle = c.getString("subtitle")
-                    val director = c.getString("director")
-                    val actor = c.getString("actor")
-                    val userRating = c.getString("userRating")
-                    items.add(MovieItem(map.get("rank") as String, title, map.get("openMovie") as String, map.get("audiSum") as String, image, subtitle, director, actor, userRating))
 
-
-                val movieItem = items.get(num)
-                num++
-                Log.i("dwqfqw", movieItem.imgUrl + " : " + movieItem.rank)
+                    movieItem.imgUrl = image
+                    adapter.notifyItemInserted(movieItem.rank.toInt()-1)
 
             }
 
@@ -89,13 +107,18 @@ public class MovieFragment : Fragment() {
     }
 
     val boxOfficeOpenApiLoadData : ()->Unit = {
+        mainActivty.pg.visibility = View.VISIBLE
+        mainActivty.blur.visibility = View.VISIBLE
         val baseUrl = "http://www.kobis.or.kr/"
         val builder:Retrofit.Builder = Retrofit.Builder()
         builder.baseUrl(baseUrl)
         builder.addConverterFactory(ScalarsConverterFactory.create())
         val retrofit:Retrofit = builder.build()
         val retrofitService : RetrofitService = retrofit.create(RetrofitService::class.java)
-        val call : Call<String> = retrofitService.boxOfficeOpenApiLoadData("2f54970e58874ec5d2efc1ff35228264", "20211108")
+        val call : Call<String> = retrofitService.boxOfficeOpenApiLoadData("2f54970e58874ec5d2efc1ff35228264", "20211109")
+
+        items.clear()
+        adapter.notifyDataSetChanged()
         call.enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.i("boxOfficeOpenApiLoadData", response.body() as String)
@@ -107,17 +130,10 @@ public class MovieFragment : Fragment() {
                     val rank = c.getString("rank")
                     val title = c.getString("movieNm")
                     val openMovie = c.getString("openDt")
-                    val audiSum = c.getString("audiAcc")
+                    items.add(MovieItem(rank, title, openMovie, ""))
 
-                    val map = mutableMapOf<String, String>()
-                    map.put("rank", rank)
-                    map.put("openMovie", openMovie)
-                    map.put("audiSum", audiSum)
-
-                    naverOpenApiMovieLoadData(title, map)
-                    //todo : 야기서는 도대체 어떻게 되는거지???
+                    naverOpenApiMovieLoadData(title, items.get(i))
                 }
-
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
